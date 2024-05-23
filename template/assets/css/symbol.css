@@ -302,3 +302,25 @@
   padding: 0 .3em .2em 0;
   margin: .2em .4em;
 }
+
+
+.magnifier {
+  background-image: url('./svg_file/magni/magnifier_default.svg');
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 2vh;
+  height: 2vh;
+  border: none;
+  cursor: pointer;
+  padding: 0 .2em .1em 0;
+  margin: .1em .2em;
+  transform: translateX(30px) translateY(2px);
+}
+
+.magnifier:hover {
+  transform: translateX(30px) translateY(2px);
+  width: 2.2vh;
+  height: 2.2vh;
+}

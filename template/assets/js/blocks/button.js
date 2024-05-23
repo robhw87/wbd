@@ -70,7 +70,8 @@ export const symbolBtn = (arr) => {
         element.setAttribute('class', arr.class)
     } else {element.setAttribute('class', 'defaultSymbol')}
 
-    if(arr.textCont && arr.textCont !== '') {
+    if(arr.textCont ) {
+        console.log(arr.textCont)
         element.textContent = arr.textCont;
     } else {element.textContent = 'text'}
     if(arr.custom && arr.custom !== '') {

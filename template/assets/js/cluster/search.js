@@ -7,7 +7,14 @@ export const searchMagnifier = (target, idInput) => {
     createDiv({
         selector: target,
         id: 'search' + idInput,
-        class: 'flex-r'
+        class: 'card-r'
+    })
+    symbolBtn({
+        selector: '#search' + idInput,
+        id: '#searchBtn' + idInput,
+        type: 'button',
+        class: 'magnifier',
+        textCont:' ',
     })
     textInp({                    
         selector: '#search' + idInput,
@@ -15,10 +22,5 @@ export const searchMagnifier = (target, idInput) => {
         placeholder: 'search',
         class: 'searchForm'
     })
-    symbolBtn({
-        selector: '#search' + idInput,
-        id: '#searchBtn' + idInput,
-        type: 'button',
-        class: 'magnifier',
-    })
+
 }
