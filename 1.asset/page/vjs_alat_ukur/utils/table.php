@@ -218,3 +218,105 @@ $add_table = [
         ['type'=>'hidden', 'type_attr'=>'hidden', 'name'=>'result'],
     ]
 ];
+
+
+$tool_table = [
+    'id'=> 'tool_table', 
+    'class'=>'w-screen',
+    'row_count' =>50,
+    'tr'=>['class'=>'hidden'],
+    'data_array'=> [
+        ['type'=>'hidden', 'type_attr'=>'hidden', 'name'=>'data_group'],
+        [
+            'type'=>'input',
+            'th'=>[
+                'body'=>'Date',
+                'class'=>'bg-blue-700 border-2 text-white uppercase border-black p-2 sticky left-0 top-0 z-20 w-[20vw]',
+            ],
+            'td'=>[
+                'data_attr'=>['field::eff_date'],
+                'class'=>'bg-slate-400 whitespace-normal border-2 text-center text-sm font-semibold border-black p-2 sticky left-0 z-10 w-[20vw]'
+            ],
+            'inp'=>[
+                'type_attr'=>'date', 
+                'name'=> 'eff_date', 
+                'class'=>'w-full h-full flex justify-center items-center focus:ring focus:ring-blue-600 focus:ring-width-1 focus:outline focus:bg-slate-200 focus:outline-blue-600 bg-transparent px-4 hidden'
+            ]
+        ],
+        [
+            'type'=>'input',
+            'th'=>[
+                'body'=>'User',
+                'class'=>'bg-blue-600 border-2 text-white uppercase border-black p-2 sticky top-0 z-10 w-[40vw]'
+            ],
+            'td'=>[
+                'data_attr'=>['field::user_input'],
+                'class'=>'bg-slate-300 whitespace-normal border-2 text-sm p-2 border-black w-[40vw]'
+            ],
+            'inp'=>[
+                'type'=>'text', 
+                'placeholder'=>'',
+                'disable'=>'',
+                'name'=> 'user_input', 
+                'class'=>'w-full h-full flex justify-center items-center focus:ring focus:ring-blue-600 focus:ring-width-1 focus:outline focus:bg-slate-200 focus:outline-blue-600 bg-transparent px-4 hidden'
+            ]
+        ],
+        [
+            'type'=>'input',
+            'th'=>[
+                'body'=>'Lokasi',
+                'class'=>'bg-blue-600 border-2 text-white uppercase border-black p-2 sticky top-0 z-10 w-[20vw]'
+            ],
+            'td'=>[
+                'data_attr'=>['field::loc'],
+                'class'=>'bg-slate-300 whitespace-normal border-2 text-sm p-2 border-black w-[20vw]'
+            ],
+            'inp'=>[
+                'type'=>'text', 
+                'placeholder'=>'',
+                'list'=>'loc_list',
+                'name'=>'loc',
+                'class'=>'w-full h-full flex justify-center items-center focus:ring focus:ring-blue-600 focus:ring-width-1 focus:outline focus:bg-slate-200 focus:outline-blue-600 bg-transparent px-4 hidden'
+            ]
+        ],
+        [
+            'type'=>'input',
+            'th'=>[
+                'body'=>'Approval',
+                'class'=>'bg-blue-600 border-2 text-white uppercase border-black p-2 sticky top-0 z-10 w-[14vw]'
+            ],
+            'td'=>[
+                'data_attr'=>['field::approval_by'],
+                'class'=>'bg-slate-300 whitespace-normal border-2 text-sm p-2 border-black w-[14vw]'
+            ],
+            'inp'=>[
+                'type'=>'text', 
+                'placeholder'=>'',
+                'name'=> 'approval_by', 
+                'list'=> 'user_list', 
+                'class'=>'w-full h-full flex justify-center items-center focus:ring focus:ring-blue-600 focus:ring-width-1 focus:outline focus:bg-slate-200 focus:outline-blue-600 bg-transparent px-4 hidden'
+            ]
+        ],
+        [
+            'type'=>'set_btn',
+            'th'=>[
+                'body'=>'Detail',
+                'class'=>'bg-blue-600 border-2 text-white uppercase border-black p-2 sticky top-0 z-10 w-[6vw]'
+            ],
+            'td'=>[
+                'data_attr'=>['field::data_group'],
+                'class'=>'bg-slate-300 whitespace-normal border-2 text-sm p-2 border-black w-[6vw]'
+            ],
+            'button'=>[
+                [
+                    'data_attr'=>['method::open'],
+                    'class'=>'w-6 h-6 arrow_right_black'
+                ],
+                [
+                    'data_attr'=>['method::delete'],
+                    'class'=>'w-6 h-6 ml-2 minus'
+                ],
+            ]
+        ],
+    ]
+];

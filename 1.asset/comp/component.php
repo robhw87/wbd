@@ -59,6 +59,44 @@ class Comp {
         return $component;
     }
 
+    static function button($array) {
+        $title = isset($array['title']) ? "title='".$array['title']."' " : '';
+        $class = isset($array['class']) ? "class='".$array['class']."' " : '';
+        $type_attr = isset($array['type_attr']) ? "type='".$array['type_attr']."' " : 'button';
+        $id = isset($array['id']) ? "id='".$array['id']."' " : '';
+        $name = isset($array['name']) ? "name='".$array['name']."' " : '';
+        $disable = isset($array['disable']) ? "disabled " : '';
+        $body = '';
+        if(isset($array['body'])) {
+            if(is_array($array['body'])) {
+                foreach($array['body'] as $val) {
+                    $body .= $val;
+                }
+            } else {
+                $body = $array['body'];
+            }
+        }
+        $data_attr = '';
+        if(isset($array['data_attr'])) {
+            foreach($array['data_attr'] as $val2) {
+                $data_att = explode('::', $val2);
+                $data_attr .= 'data-'.$data_att[0]."='".$data_att[1]."' ";
+            }
+        }
+        $component = "<button " 
+        .$title
+        .$id
+        .$name
+        .$type_attr
+        .$data_attr
+        .$class
+        .$disable.">"
+        .$body."
+        </button>";
+
+        return $component;
+    }
+
     // structure
     static function div($array) {
         $title = isset($array['title']) ? "title='".$array['title']."' " : '';
@@ -378,7 +416,9 @@ class Comp {
     }
 
     static function option($array) {
-        $value = isset($array['value']) ? "value='".$array['value']."' " : '';
+        $title = isset($array['title']) ? "title='".$array['title']."' " : '';
+        $class = isset($array['class']) ? "class='".$array['class']."' " : '';
+        $id = isset($array['id']) ? "id='".$array['id']."' " : '';
         $body = '';
         if(isset($array['body'])) {
             if(is_array($array['body'])) {
@@ -389,14 +429,24 @@ class Comp {
                 $body = $array['body'];
             }
         }
+        $data_attr = '';
+        if(isset($array['data_attr'])) {
+            foreach($array['data_attr'] as $val2) {
+                $data_att = explode('::', $val2);
+                $data_attr .= 'data-'.$data_att[0]."='".$data_att[1]."' ";
+            }
+        }
         $component = "<option " 
-        .$value.">"
-        .$body."
+        .$title
+        .$id
+        .$data_attr
+        .$class.">
+        ".$body."
         </option>";
 
         return $component;
     }
-
+ 
     static function label($array) {
         $title = isset($array['title']) ? "title='".$array['title']."' " : '';
         $class = isset($array['class']) ? "class='".$array['class']."' " : '';
@@ -430,6 +480,62 @@ class Comp {
     }
 
     // table
+    static function create_table($array) {
+        $array = [
+            'table'=>[
+                'id'=>'',
+                'class'=>'',
+            ],
+            'row_count'=>'',
+            'tr'=>[
+                'th'=>[
+                    ['body'=>'', 'class'=>''],
+                    ['body'=>'', 'class'=>''],
+                    ['body'=>'', 'class'=>''],
+                    ['body'=>'', 'class'=>''],
+                ],
+                'td'=>[
+   
+                ],
+            ],
+            'footer'=>[ // pagination purposes
+
+            ]
+        ];
+
+        $title = isset($array['title']) ? "title='".$array['title']."' " : '';
+        $class = isset($array['class']) ? "class='".$array['class']."' " : '';
+        $id = isset($array['id']) ? "id='".$array['id']."' " : '';
+        $name = isset($array['name']) ? "name='".$array['name']."' " : '';
+        $body = '';
+        if(isset($array['body'])) {
+            if(is_array($array['body'])) {
+                foreach($array['body'] as $val) {
+                    $body .= $val;
+                }
+            } else {
+                $body = $array['body'];
+            }
+        }
+        $data_attr = '';
+        if(isset($array['data_attr'])) {
+            foreach($array['data_attr'] as $val2) {
+                $data_att = explode('::', $val2);
+                $data_attr .= 'data-'.$data_att[0]."='".$data_att[1]."' ";
+            }
+        }
+        $component = "<table " 
+        .$title
+        .$id
+        .$name
+        .$data_attr
+        .$class.">"
+        .$body."
+        </table>";
+
+        return $component;
+    }
+
     static function table($array) {
         $title = isset($array['title']) ? "title='".$array['title']."' " : '';
         $class = isset($array['class']) ? "class='".$array['class']."' " : '';
@@ -742,6 +848,70 @@ class Comp {
         .$class.">"
         .$body."
         </a>";
+        return $component;
+    }
+
+    static function li($array) {
+        $title = isset($array['title']) ? "title='".$array['title']."' " : '';
+        $class = isset($array['class']) ? "class='".$array['class']."' " : '';
+        $id = isset($array['id']) ? "id='".$array['id']."' " : '';
+        $body = '';
+        if(isset($array['body'])) {
+            if(is_array($array['body'])) {
+                foreach($array['body'] as $val) {
+                    $body .= $val;
+                }
+            } else {
+                $body = $array['body'];
+            }
+        }
+        $data_attr = '';
+        if(isset($array['data_attr'])) {
+            foreach($array['data_attr'] as $val2) {
+                $data_att = explode('::', $val2);
+                $data_attr .= 'data-'.$data_att[0]."='".$data_att[1]."' ";
+            }
+        }
+        $component = "<li " 
+        .$title
+        .$id
+        .$data_attr
+        .$class.">"
+        .$body."
+        </li>";
+
+        return $component;
+    }
+
+    static function u($array) {
+        $title = isset($array['title']) ? "title='".$array['title']."' " : '';
+        $class = isset($array['class']) ? "class='".$array['class']."' " : '';
+        $id = isset($array['id']) ? "id='".$array['id']."' " : '';
+        $body = '';
+        if(isset($array['body'])) {
+            if(is_array($array['body'])) {
+                foreach($array['body'] as $val) {
+                    $body .= $val;
+                }
+            } else {
+                $body = $array['body'];
+            }
+        }
+        $data_attr = '';
+        if(isset($array['data_attr'])) {
+            foreach($array['data_attr'] as $val2) {
+                $data_att = explode('::', $val2);
+                $data_attr .= 'data-'.$data_att[0]."='".$data_att[1]."' ";
+            }
+        }
+        $component = "<u " 
+        .$title
+        .$id
+        .$data_attr
+        .$class.">"
+        .$body."
+        </u>";
+
         return $component;
     }
 

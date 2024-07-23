@@ -12,7 +12,7 @@ $index = $datalist->create(['id'=>'alat_list'])
     .Comp::dtlist(['id'=>'user_list'])
     .Comp::dtlist(['id'=>'loc_list'])
     .$load2."
-    ".$div->create([
+    ".Comp::div([
         'data_attr'=>['card::detail'],
         'class'=>'z-30 block hidden shadow-lg shadow-slate-800 rounded fixed w-[60vw] h-[60vh] mx-[20vw] my-[20vh] bg-slate-400 custom_scroll',
         'body'=>[
@@ -21,12 +21,12 @@ $index = $datalist->create(['id'=>'alat_list'])
             Comp::div([
                 'class'=>'w-full h-[5vh] bg-slate-700 flex items-center',
                 'body'=>[
-                    $button->create([
+                    Comp::button([
                         'id'=>'submit_form_btn',
                         'class'=>'z-30 rounded sticky bottom-0 right-0 bg-gray-300 text-sm px-4 border-2 border-slate-400 shadow-md hover:font-semibold hover:bg-gray-200 duration-300 mx-4',
                         'body'=>'submit'
                     ]),
-                    $button->create([
+                    Comp::button([
                         'id'=>'close_form_btn',
                         'class'=>'z-30 rounded sticky bottom-0 right-0 bg-gray-300 text-sm px-4 border-2 border-slate-400 shadow-md hover:font-semibold hover:bg-gray-200 duration-300',
                         'body'=>'cancel'
@@ -36,11 +36,11 @@ $index = $datalist->create(['id'=>'alat_list'])
             
         ]
     ])."
-    ".$nav->create([
+    ".Comp::nav([
         'class'=>'fixed flex flex-row top-0 bg-slate-950 w-screen h-[5vh]',
         'body'=>nav($nav_array)
     ])."
-    ".$header->create([
+    ".Comp::header([
         'class'=>'fixed px-2 top-[5vh] flex flex-col bg-slate-700 w-screen h-[18vh]',
         'body'=>[
             $title->create([
@@ -63,11 +63,11 @@ $index = $datalist->create(['id'=>'alat_list'])
                 'list'=>'alat_list',
                 'class'=>'rounded hidden px-2 text-sm h-[1.6rem] focus:ring focus:ring-blue-400 focus:ring-width-4 focus:outline focus:outline-blue-400 fixed top-[6vh] z-30 right-10 shadow-md w-[40vw]'
             ]),
-            $button->create([
+            Comp::button([
                 'id'=>'open_dtlist',
                 'class'=>'fixed z-20 right-2 top-[6vh] w-6 h-6 rounded bg-transparent open_white'
             ]),
-            $button->create([
+            Comp::button([
                 'id'=>'new__data',
                 'disable'=>'',
                 'class'=>'fixed z-20 right-2 top-[10vh] w-6 h-6 rounded bg-transparent opacity-50 plus'
