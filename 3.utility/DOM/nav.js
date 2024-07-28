@@ -1,24 +1,5 @@
-export const activeLink = (cls) => {
-    const container = document.querySelector('nav');
-    const ul = container.querySelector('ul');
-    const aLink = ul.querySelectorAll('a');
-    let styleClass = "h-full w-[10vw] text-white justify-center items-center flex hover:bg-slate-700 duration-200 ease-in-out hover:border-blue-500 hover:font-semibold hover:border-b-4 bg-blue-800 border-blue-300 border-b-4 font-semibold";
-    if(cls!=='') {
-        styleClass = cls;
-    }
-    aLink.forEach(link=> {
-        const currentUrl = window.location.href.split('/');
-        const compare = currentUrl[currentUrl.length-1];
-        const hrefValue = link.getAttribute('href');
-        if (hrefValue === compare) {
-            link.setAttribute('class', styleClass);
-        }
-    })
-}
-
-export class Pagination {
-    constructor(key) {
-        this.key = key;
+export class PaginationDOM {
+    constructor() {
         this.active = ['text-white', 'font-bold', 'bg-blue-700', 'bg-slate-200'];
         this.mute = [
             'hover:font-bold',
@@ -27,10 +8,32 @@ export class Pagination {
             'hover:border-black',
             'cursor-pointer'
         ];
+        this.nav_active_link = "h-full w-[10vw] text-white justify-center items-center flex hover:bg-slate-700 duration-200 ease-in-out hover:border-blue-500 hover:font-semibold hover:border-b-4 bg-blue-800 border-blue-300 border-b-4 font-semibold"
     }
 
-    pagination_init(data, table) {
-        const div = document.querySelector(this.key);
+    static active_link(cls) {
+        const container = document.querySelector('nav');
+        const ul = container.querySelector('ul');
+        const aLink = ul.querySelectorAll('a');
+        if(cls!=='') {
+            styleClass = cls;
+        } else {
+            $styleClass = this.nav_active_link;
+        }
+
+        aLink.forEach(link=> {
+            const currentUrl = window.location.href.split('/');
+            const compare = currentUrl[currentUrl.length-1];
+            const hrefValue = link.getAttribute('href');
+            if (hrefValue === compare) {
+                link.setAttribute('class', styleClass);
+            }
+        })
+        return;
+    }
+
+    static init(key, data, table) {
+        const div = document.querySelector(key);
         const dt_cnt = data.length;
         const tbl = document.querySelector(table);
         const tr = tbl.querySelectorAll('tr');
@@ -66,10 +69,11 @@ export class Pagination {
                 }
             }
         })
+        return;
     }
 
-    page_active(page) {
-        const div = document.querySelector(this.key);
+    static active(key, page) {
+        const div = document.querySelector(key);
         const pagi = div.querySelectorAll('[data-id]');
         const max = div.querySelector('[data-id = "7"]').getAttribute('data-page');
         pagi.forEach(dt=>{
@@ -252,5 +256,6 @@ export class Pagination {
                 }
             }
         })
+        return;
     }
 }

@@ -578,36 +578,56 @@ class Comp {
 
         //class
         $cls = $array['class'];
+        // table class
         $array['table']['class'] = isset($cls['table']) ? $cls['table'] : 'w-full scrollable';
+        // tr class
         $class_tr = isset($cls['tr']) ? $cls['tr'] : 'hidden';
+        // th class for the first row and col
         $class_th_first = isset($cls['th_first']) ? $cls['th_first'] : 'bg-blue-700 border-2 text-white uppercase border-black p-2 sticky left-0 top-0 z-20 ';
+        // th class
         $class_th = isset($cls['th']) ? $cls['th'] : 'bg-blue-600 border-2 text-white uppercase border-black p-2 sticky top-0 z-10 ';
+        // td first col 
         $class_td_first = isset($cls['td_first']) ? $cls['td_first'] : 'bg-slate-400 whitespace-normal border-2 text-center text-sm font-semibold border-black p-2 sticky left-0 z-10 w-[20vw]';
+        // td 
         $class_td = isset($cls['td']) ? $cls['td'] : 'bg-slate-300 whitespace-normal border-2 text-sm p-2 border-black ';
 
-        // header
-        $th = '';
+        //separate array 
+        $th_array = [];
+        $td_array = [];
         for($i=0; $i<count($array['tr']); $i++) {
-            $tr = $array['tr'][$i];
-            if(isset($tr['th'])) {
-                if(!isset($tr['th']['class'])) {
-                    if($i=0) {
-                        $tr['th']['class']= $class_th_first;
+            $set = $array['tr'][$i];
+            if(isset($set['th'])) {
+                if (!isset($set['th']['class'])) {
+                    if($i === 0) {
+                        $set['th']['class'] = $class_th_first;
                     } else {
-                        $tr['th']['class']= $class_th;
+                        $set['th']['class'] = $class_th;
                     }
                 }
-                $th .= self::th($array['th'][$i]);
+                $th_array[] = $set['th'];
+            }
+            if (!isset($set['td']['class'])) {
+                if($i === 0) {
+                    $set['td']['class'] = $class_td_first;
+                } else {
+                    $set['td']['class'] = $class_td;
+                }
+            }
+            foreach($set as $key=>$value) {
+                if($key !== 'th') {
+                    $td_array[$key] = $value;
+                }
             }
         }
-        $tr_head = self::tr([
-            'data_attr'=>['id::header'],
-            'body'=>$th
-        ]);
+        // header
+        $thead = self::thead($th_array);
+
+        // trow
+        $tr = self::tr($td_array);
 
         // body
         $row_count = isset($array['row_count']) ? $array['row_count'] : 50;
-        $tr_body = '';
+        $tbody = '';
         for ($i=0; $i<$row_count; $i++) {
             $td='';
             for($ii=0; $ii<count($array['tr']); $ii++) {
@@ -684,17 +704,13 @@ class Comp {
                 }
     
             }
-            $tr_body .= self::tr([
-                'data_attr'=>['id::'.$i],
-                'class'=>$class_tr,
-                'body'=>$td
-            ]);
+
         }
 
             
         $array['table']['body'] = [
-            self::thead(['body'=>$tr_head]),
-            self::tbody(['body'=>$tr_body])
+            self::thead(['body'=>$thead]),
+            self::tbody(['body'=>$tbody])
         ];
 
         $component = self::table($array['table']);
@@ -737,17 +753,17 @@ class Comp {
 
     static function thead($array) {
         $body = '';
-        if(isset($array['body'])) {
-            if(is_array($array['body'])) {
-                foreach($array['body'] as $val) {
-                    $body .= $val;
-                }
-            } else {
-                $body = $array['body'];
-            }
+        foreach($array as $set) {
+            $body .= self::th($set);
         }
+
+        $thead = self::tr([
+            'data_attr'=>['id::header'],
+            'body'=>$body
+        ]);
+
         $component = "<thead>" 
-        .$body."
+        .$thead."
         </thead>";
 
         return $component;

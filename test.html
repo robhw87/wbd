@@ -14,45 +14,27 @@
     </head>
 </head>
 <body class="bg-slate-200">
-    <div class="w-screen h-screen absolute z-40 flex justify-center hidden items-center">
-        <div class="h-full w-full opacity-75 absolute bg-slate-200"></div>
-        <div class="loading2"></div>
-    </div>
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                    haloo
-                    <input type="text" value="testing">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div id="abc">
-        <select name="test" id="asdfab" class="bg-red-300">
-            <option value="1234" class='bg-green-400'>12345</option>
-            <option value="abc">abc</option>
-        </select>
-    </div>
-
-    <button type="button" id="submit-button" class="home w-10 h-10"></button>
-
-    <div>
-        <input  id="mencoba" type="text" list="list_coba">
-        <datalist id="list_coba">
-            <option value="test abc"></option>
-            <option value="test2\ndec"></option>
-            <option value="test3\napakah"></option>
-        </datalist>
-    </div>
+   <button id="test" type="button">
+        test
+   </button>
+   </br>
+   <label for="test2">testing</label>
+   <input type="text" id="test2">
 </body>
 <script>
-    const test =  document.querySelector('#asdfab');
-    document.addEventListener('change', function(event){
-        console.log(test.value);
-    })
+    class ButtonDOM {
+        
+    }
 
+    const tst_btn = (key) =>{
+        const btn = document.querySelector(key);
+        if(btn) {
+            btn.addEventListener('click', function(){
+                console.log('testing new concept');
+            })
+        }
+    }
+    tst_btn('#test');
 
 </script>
 </html>
